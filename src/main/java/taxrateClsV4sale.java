@@ -166,78 +166,39 @@ public class taxrateClsV4sale {
 		return format; // 0 5
 	}
 
-	// 格式化展示 表格式cell展示数据
-	// static int widthChar = 100;
-	static int cellwidth = 20;
-	static int cellwidth2 = 30;
 
+	static int cellwidth2 = 30;
 	private static void formatShow(Map input1) {
 
-		printCell("item", "left");
-		printCell("price", "mid");
-		printCell("qty", "right");
+		PrintCellUtill.printCell("item", "left");
+		PrintCellUtill.printCell("price", "mid");
+		PrintCellUtill.printCell("qty", "right");
 		System.out.print("\r\n");
 		((List) input1.get("shoplist物品列表")).forEach(new Consumer<Map>() {
 
 			@Override
 			public void accept(Map map) {
 
-				printCell(map.get("item物品名"), "left");
-				printPrice("$" + map.get("price价格"), 0, "price".length());
-				printCell(map.get("qty数量"), "right");
+				PrintCellUtill.printCell(map.get("item物品名"), "left");
+				PrintCellUtill.printPriceByMidtitle("$" + map.get("price价格"), 0, "price".length());
+				PrintCellUtill.printCell(map.get("qty数量"), "right");
 
 				System.out.print("\r\n");
 			}
 
 		});
 
-		printCell("subtotal:", "left", cellwidth2);
-		printCell("$" + input1.get("subtotal物品总价不含税").toString(), "right", cellwidth2);
+		PrintCellUtill.printCell("subtotal:", "left", cellwidth2);
+		PrintCellUtill.printCell("$" + input1.get("subtotal物品总价不含税").toString(), "right", cellwidth2);
 		System.out.print("\r\n");
 
-		printCell("tax:", "left", cellwidth2);
-		printCell("$" + input1.get("tax税").toString(), "right", cellwidth2);
+		PrintCellUtill.printCell("tax:", "left", cellwidth2);
+		PrintCellUtill.printCell("$" + input1.get("tax税").toString(), "right", cellwidth2);
 		System.out.print("\r\n");
 
-		printCell("total:", "left", cellwidth2);
-		printCell("$" + input1.get("total总价含税").toString(), "right", cellwidth2);
+		PrintCellUtill.printCell("total:", "left", cellwidth2);
+		PrintCellUtill.printCell("$" + input1.get("total总价含税").toString(), "right", cellwidth2);
 		System.out.print("\r\n");
-
-	}
-
-	protected static void printCell(Object lable, String Align) {
-		Map cell1 = new HashMap();
-		cell1.put("lable", lable);
-		cell1.put("Align对齐模式", Align);
-		cell1.put("width", cellwidth);
-		printCell(cell1);
-	}
-
-	protected static void printCell(Object lable, String Align, int cellwidth22) {
-		Map cell1 = new HashMap();
-		cell1.put("lable", lable);
-		cell1.put("Align对齐模式", Align);
-		cell1.put("width", cellwidth22);
-		printCell(cell1);
-	}
-
-	protected static void printPrice(Object prc, int paddAdj, int priceTitleLen) {
-		int priceLastEndIdx = cellwidth / 2 + priceTitleLen / 2 + paddAdj;
-		String lefted = StringUtils.leftPad(prc.toString(), priceLastEndIdx);
-		System.out.print(StringUtils.rightPad(lefted, cellwidth));
-	}
-
-	private static void printCell(Map cell1) {
-		int cellwidth = (int) cell1.get("width");
-		if (cell1.get("Align对齐模式").toString() == "left") {
-			System.out.print(StringUtils.rightPad(cell1.get("lable").toString(), cellwidth));
-		} else if (cell1.get("Align对齐模式").toString() == "mid") {
-			String lefted = StringUtils.leftPad(cell1.get("lable").toString(),
-					cellwidth / 2 + cell1.get("lable").toString().length() / 2);
-			System.out.print(StringUtils.rightPad(lefted, cellwidth));
-		} else {// right
-			System.out.print(StringUtils.leftPad(cell1.get("lable").toString(), cellwidth));
-		}
 
 	}
 
@@ -253,7 +214,7 @@ public class taxrateClsV4sale {
 	private static Map selectTaxrateFrom_taxRateTable_where_loc_and_itemtype(Object loc, Object itemtype) {
 
 		// 税率表
-	  List<Map> taxRateTable = new ArrayList() {
+		List<Map> taxRateTable = new ArrayList() {
 			{
 				// loc,sale,type(food)
 				add(MapBldr.newx().put("loc地点", "CA").put("type", "other").put("tax rate税率", "9.75%")
@@ -277,7 +238,7 @@ public class taxrateClsV4sale {
 
 	}
 
-	// 查询物品类型   
+	// 查询物品类型
 	private static Object gettype(Object name) {
 		List<Map> itemTypetable = new ArrayList() {
 			{
@@ -299,7 +260,4 @@ public class taxrateClsV4sale {
 		return result.get(0).get("type");
 	}
 
-	
-
- 
 }
