@@ -261,60 +261,11 @@ public class taxrateClsV8sale {
 
 	// 计算单项税务
 
-	private static Object get_item_tax(Object item_total, Object tax_rate_num) {
-		if (tax_rate_num == null)
-			return 0d;
-		return (Double) item_total * (Double) tax_rate_num;
-	}
+ 
 
 	// 查询税率 数据表选择运算
-	private static Map selectTaxrateFrom_taxRateTable_where_loc_and_itemtype(Object loc, Object itemtype) {
-
-		// 税率表
-		List<Map> taxRateTable = new ArrayList() {
-			{
-				// loc,sale,type(food)
-				add(MapBldr.newx().put("loc地点", "CA").put("type", "other").put("tax rate税率", "9.75%")
-						.put("tax_rate_num税率数字格式", 0.0975).build());
-				add(MapBldr.newx().put("loc地点", "CA").put("type", "food").put("tax rate税率", "0").build());
-
-				add(MapBldr.newx().put("loc地点", "NY").put("type", "other").put("tax rate税率", " 8.875%")
-						.put("tax_rate_num税率数字格式", 0.08875).build());
-				add(MapBldr.newx().put("loc地点", "NY").put("type", "food").put("tax rate税率", "0").build());
-				add(MapBldr.newx().put("loc地点", "NY").put("type", "cloth").put("tax rate税率", "0").build());
-
-			}
-		};
-		List<Map> result = taxRateTable.stream().filter(map_item -> {
-
-			return loc.equals(map_item.get("loc地点").toString()) && itemtype.equals(map_item.get("type").toString());
-			// return true;
-
-		}).collect(Collectors.toList());
-		return result.get(0);
-
-	}
+ 
 
 	// 查询物品类型
-	private static Object gettype(Object name) {
-		List<Map> itemTypetable = new ArrayList() {
-			{
-				// loc,sale,type(food)
-				add(MapBldr.newx().put("item物品名", "potato chips").put("type", "food").build()
-
-				);
-				add(MapBldr.newx().put("item物品名", "shirt").put("type", "cloth").build());
-			}
-		};
-		List<Map> result = itemTypetable.stream().filter(map_item -> {
-
-			return name.equals(map_item.get("item物品名").toString());
-			// return true;
-
-		}).collect(Collectors.toList());
-		if (result.size() == 0)
-			return "other";
-		return result.get(0).get("type");
-	}
-
+	 
 }
