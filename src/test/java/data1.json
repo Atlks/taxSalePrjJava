@@ -1,0 +1,15 @@
+{
+	"loc地点":"CA",
+	"shoplist物品列表":[
+		{
+			"item物品名":"book",
+			"qty数量":1,
+			"price价格":17.99
+		},
+		{
+			"item物品名":"potato chips",
+			"qty数量":1,
+			"price价格":3.99
+		}
+	]
+}

@@ -3,15 +3,15 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class PrintCellUtill {
-	// ∏Ò ΩªØ’π æ ±Ì∏Ò Ωcell’π æ ˝æ›
+public class PrintCellUtil {
+	// Ê†ºÂºèÂåñÂ±ïÁ§∫ Ë°®Ê†ºÂºècellÂ±ïÁ§∫Êï∞ÊçÆ
 	// static int widthChar = 100;
 	public	static int cellwidth = 20;
 	public	static int cellwidth2 = 30;
 	public static void printCell(Object lable, String Align) {
 		Map cell1 = new HashMap();
 		cell1.put("lable", lable);
-		cell1.put("Align∂‘∆Îƒ£ Ω", Align);
+		cell1.put("AlignÂØπÈΩêÊ®°Âºè", Align);
 		cell1.put("width", cellwidth);
 		printCell(cell1);
 	}
@@ -19,7 +19,7 @@ public class PrintCellUtill {
 	public static void printCell(Object lable, String Align, int cellwidth22) {
 		Map cell1 = new HashMap();
 		cell1.put("lable", lable);
-		cell1.put("Align∂‘∆Îƒ£ Ω", Align);
+		cell1.put("AlignÂØπÈΩêÊ®°Âºè", Align);
 		cell1.put("width", cellwidth22);
 		printCell(cell1);
 	}
@@ -32,9 +32,9 @@ public class PrintCellUtill {
 
 	public static void printCell(Map cell1) {
 		int cellwidth = (int) cell1.get("width");
-		if (cell1.get("Align∂‘∆Îƒ£ Ω").toString() == "left") {
+		if (cell1.get("AlignÂØπÈΩêÊ®°Âºè").toString() == "left") {
 			System.out.print(StringUtils.rightPad(cell1.get("lable").toString(), cellwidth));
-		} else if (cell1.get("Align∂‘∆Îƒ£ Ω").toString() == "mid") {
+		} else if (cell1.get("AlignÂØπÈΩêÊ®°Âºè").toString() == "mid") {
 			String lefted = StringUtils.leftPad(cell1.get("lable").toString(),
 					cellwidth / 2 + cell1.get("lable").toString().length() / 2);
 			System.out.print(StringUtils.rightPad(lefted, cellwidth));
